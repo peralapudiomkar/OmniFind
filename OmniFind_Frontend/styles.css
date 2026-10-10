@@ -1145,3 +1145,115 @@ footer {
   .ai-chat-composer { margin: 0 12px; }
   .ai-chat-disclaimer { margin-left: 12px; margin-right: 12px; }
 }
+
+/* ==========================================================================
+   AUTH / LOGIN CARD — readability fix
+   The login card has a dark surface in both themes, but its text was inheriting
+   the light-mode --text (near-black). Fix: give the card its own dark tokens
+   and force light text on titles, tabs, labels and helper copy.
+   ========================================================================== */
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) {
+  --text: #f3f4f9;
+  --text-muted: #aab0c8;
+  --line: #2b3050;
+  --line-strong: #444b73;
+  --primary-light: rgba(155, 148, 255, 0.16);
+  color: #f3f4f9;
+  background: linear-gradient(160deg, #181c31 0%, #11142a 100%);
+  border: 1px solid rgba(155, 148, 255, 0.22);
+  box-shadow: 0 30px 80px rgba(8, 10, 30, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.03) inset;
+}
+
+/* Titles, brand name, field labels -> white */
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"])
+  :is(h1, h2, h3, h4, label, legend, .brand-name, .auth-title, .field-label) {
+  color: #ffffff;
+  text-shadow: none;
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) label {
+  display: block;
+  margin: 14px 0 6px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Sub-copy and helper text */
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) :is(p, small, .muted, .auth-note, .auth-sub) {
+  color: #aab0c8;
+}
+
+/* Brand pill ("ACCOUNT") */
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) .brand-tech {
+  background: rgba(155, 148, 255, 0.18);
+  color: #c9c5ff;
+  border: 1px solid rgba(155, 148, 255, 0.35);
+}
+
+/* Log in / Register tabs: clearly readable in both states */
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"])
+  :is(.auth-tab, .auth-tabs button, .tab-btn, [role="tab"]) {
+  color: #d5d8ea;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  font-weight: 700;
+  transition: var(--transition);
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"])
+  :is(.auth-tab, .auth-tabs button, .tab-btn, [role="tab"]):hover {
+  color: #ffffff;
+  border-color: rgba(155, 148, 255, 0.6);
+  background: rgba(155, 148, 255, 0.14);
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"])
+  :is(.auth-tab, .auth-tabs button, .tab-btn, [role="tab"]):is(.active, [aria-selected="true"]) {
+  color: #ffffff;
+  background: linear-gradient(135deg, #7a74ff, #5144d1);
+  border-color: transparent;
+  box-shadow: 0 6px 18px rgba(99, 91, 255, 0.4);
+}
+
+/* Inputs */
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) input {
+  width: 100%;
+  padding: 13px 15px;
+  color: #ffffff;
+  background: #0c0f1f;
+  border: 1px solid #3a4168;
+  border-radius: var(--radius-md);
+  outline: none;
+  transition: var(--transition);
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) input::placeholder {
+  color: #7f86a6;
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) input:focus {
+  border-color: #8b84ff;
+  box-shadow: 0 0 0 4px rgba(139, 132, 255, 0.22);
+}
+
+/* Primary submit button + links */
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"])
+  :is(.auth-submit, button[type="submit"], .primary-btn) {
+  width: 100%;
+  padding: 14px;
+  color: #ffffff;
+  font-weight: 800;
+  background: linear-gradient(135deg, #7a74ff, #5144d1);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 22px rgba(99, 91, 255, 0.4);
+  transition: var(--transition);
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"])
+  :is(.auth-submit, button[type="submit"], .primary-btn):hover {
+  transform: translateY(-1px);
+  filter: brightness(1.08);
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) a {
+  color: #a9a4ff;
+  font-weight: 600;
+}
+:is(.auth-card, .login-card, .auth-modal-card, .auth-panel, [class*="auth-card"]) a:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
